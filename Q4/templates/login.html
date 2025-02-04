@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Husky Banking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+</head>
+<body>
+    <form id="mainHandler" method="post" action="{{ url_for('submission') }}">
+        <h1 id="loginHeader">Husky Banking</h1>
+        <p id="slogan">A bank where you know your money is in the right paws!</p>
+
+        {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+
+        <p id="userInput">
+            <label for="username">Username</label>:
+            <input id="username" name="username" required size="32" type="text">
+        </p>
+        <p id="passInput">
+            <label for="password">Password</label>:
+            <input id="password" name="password" required size="32" type="password">
+        </p>
+
+        <p id="signIn">
+            <input id="submit" name="submit" type="submit" value="Sign In">
+        </p>
+        
+        <p id="customPage">
+            <input id="customPage" name="customPage" type="submit" value="Custom Page">
+        </p>
+
+        <div id="johnathan"></div>
+
+        <script src="/static/js/imageJS.js"></script>
+        <script>
+            const backgroundImageUrl = "{{ url_for('static', filename='images/Spring_Fog.jpg') }}";
+            const loginBlobImageUrl = "{{ url_for('static', filename='images/husky_qa.jpeg') }}";
+            const iconImageUrl = "{{ url_for('static', filename='images/johnathan.ico') }}";
+    
+            function setImages() {
+                document.body.style.backgroundImage = `url(${backgroundImageUrl})`;
+                document.getElementById("mainHandler").style.backgroundImage = `url(${loginBlobImageUrl})`;
+    
+                const link = document.createElement('link');
+                link.type = 'image/x-icon';
+                link.rel = 'shortcut icon';
+                link.href = iconImageUrl;
+                document.getElementsByTagName('head')[0].appendChild(link);
+            }
+    
+            setImages();
+        </script>
+    </form>
+</body>
+</html>
